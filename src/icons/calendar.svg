@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 扁平化日历图标 - UOS Calendar 主图标 -->
+  
+  <!-- 背景圆角矩形（白色主体） -->
+  <rect x="0" y="0" width="512" height="512" rx="115" ry="115" fill="#FFFFFF"/>
+  
+  <!-- 顶部蓝色区域（iOS蓝色） -->
+  <path d="M0 115C0 51.5 51.5 0 115 0H397C460.5 0 512 51.5 512 115V140H0V115Z" fill="#007AFF"/>
+  
+  <!-- 日期数字 "31" -->
+  <text x="256" y="380" 
+        font-family="SF Pro, -apple-system, BlinkMacSystemFont, Inter, sans-serif" 
+        font-size="200" 
+        font-weight="700" 
+        fill="#333333" 
+        text-anchor="middle"
+        dominant-baseline="central">31</text>
+  
+  <!-- 装饰性横线（可选，增加视觉层次） -->
+  <rect x="156" y="420" width="200" height="8" rx="4" fill="#E5E5EA"/>
+</svg>
