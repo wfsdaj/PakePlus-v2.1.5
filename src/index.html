@@ -1,32 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="styles.css" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>PakePlus App</title>
-        <script type="module" src="/main.js" defer></script>
-    </head>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>农历日历</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <div class="month-year" id="monthYear"></div>
+            <div class="nav-buttons">
+                <button class="nav-btn" onclick="changeMonth(-1)"><svg t="1768102466124" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2762" width="14" height="14"><path d="M670.954667 86.826667L269.44 488.362667a32 32 0 0 0-2.090667 42.965333l2.090667 2.282667L670.933333 935.168a8.533333 8.533333 0 0 0 6.037334 2.496h66.368a8.533333 8.533333 0 0 0 6.037333-14.570667L337.28 511.018667 749.397333 98.901333a8.533333 8.533333 0 0 0-6.037333-14.570666h-66.346667a8.533333 8.533333 0 0 0-6.058666 2.496z" p-id="2763"></path></svg></button>
+                <button class="nav-btn today-btn" onclick="goToToday()">今天</button>
+                <button class="nav-btn" onclick="changeMonth(1)"><svg t="1768102443175" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2576" width="14" height="14"><path d="M353.045333 86.826667L754.56 488.362667a32 32 0 0 1 2.090667 42.965333l-2.090667 2.282667L353.066667 935.168a8.533333 8.533333 0 0 1-6.037334 2.496h-66.368a8.533333 8.533333 0 0 1-6.037333-14.570667L686.72 511.018667 274.602667 98.901333a8.533333 8.533333 0 0 1 6.037333-14.570666h66.346667a8.533333 8.533333 0 0 1 6.058666 2.496z" p-id="2577"></path></svg></button>
+            </div>
+        </div>
 
-    <body>
-        <main class="container">
-            <h1>Welcome to PakePlus</h1>
-            <form class="row" id="greet-form">
-                <input id="inputValue" placeholder="Enter a something..." />
-            </form>
-            <div class="resultBox">
-                <span>result: </span>
-                <span id="result"></span>
+        <div class="weekdays">
+            <div class="weekday">一</div>
+            <div class="weekday">二</div>
+            <div class="weekday">三</div>
+            <div class="weekday">四</div>
+            <div class="weekday">五</div>
+            <div class="weekday">六</div>
+            <div class="weekday">日</div>
+        </div>
+
+        <div class="days-grid" id="daysGrid"></div>
+        
+        <div class="calendar-footer">
+            <div class="lunar-info" id="lunarInfo">乙巳蛇年十一月廿二</div>
+            <div class="days-count" id="daysCount"></div>
+        </div>
+        
+        <!-- 待办事项面板 -->
+        <div class="task-panel" id="taskPanel">
+            <div class="task-header" id="taskHeader">待办事项</div>
+            <div class="task-tabs">
+                <button class="task-tab active" id="tabPending" onclick="switchTaskTab('pending')">待办 <span class="task-count" id="pendingCount">0</span></button>
+                <button class="task-tab" id="tabCompleted" onclick="switchTaskTab('completed')">已完成 <span class="task-count" id="completedCount">0</span></button>
             </div>
-            <div class="invokeBox">
-                <button id="openUrl">open_url_browser</button>
-                <button id="openUrlNew">open_url_new</button>
-                <button id="runCommand">run_command</button>
-                <button id="downloadFile">download_file</button>
-                <button id="getExeDir">get_exe_dir</button>
-                <button id="getEnvVar">get_env_var</button>
-                <button id="findPort">find_port</button>
+            <div class="task-list" id="taskList"></div>
+        </div>
+    </div>
+    
+    <!-- 添加待办事项弹窗 -->
+    <div class="modal-overlay" id="taskModal">
+        <div class="modal">
+            <div class="modal-header" id="modalHeader">添加待办事项</div>
+            <input type="text" class="modal-input" id="taskInput" placeholder="输入待办事项...">
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeTaskModal()">取消</button>
+                <button class="modal-btn modal-btn-save" onclick="saveTask()">保存</button>
             </div>
-        </main>
-    </body>
+        </div>
+    </div>
+
+    <script src="js/lunar.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
 </html>
